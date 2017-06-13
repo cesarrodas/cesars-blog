@@ -1,0 +1,41 @@
+{% extends 'beginning.html' %}
+{% block content %}
+<h1>{{ BlogPost.title }}</h1>
+<br/>
+<h3>{{ BlogPost.pub_date_pretty }}</h3>
+<br/>
+<img id="post_header" src="{{ BlogPost.image.url }}" />
+<br/>
+{{ BlogPost.body | safe }}
+<br/>
+<br/>
+
+<div class="separator-small"></div>
+
+<!-- This is where the comments will be available -->
+<div class="formfiller"></div>
+<div class="form">
+  <form method="POST" action="{% url 'posts_detail' BlogPost.id %}">
+    {% csrf_token %}
+    <input type="TextField" name="username" placeholder="Username" />
+    <br/><br/>
+    <textarea rows="5" name="comment" placeholder="Share your thoughts... There is no sign up!"></textarea>
+    <br/><br/>
+    <input type="hidden" name="post_id" value="{{ BlogPost.id }}" />
+    <button type="submit">Post Comment</button>
+  </form>
+</div>
+<div class="formfiller"></div>
+
+<div class="separator-small"></div>
+
+<!-- This is where the comments will display -->
+{% for comment in Comments.all %}
+  <div class="comment">
+    <h1>{{ comment.username }}</h1>
+    <p>{{ comment.message }}</p>
+  </div>
+{% endfor %}
+
+
+{% endblock %}

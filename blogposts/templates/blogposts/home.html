@@ -1,0 +1,24 @@
+{% extends 'beginning.html' %}
+{% block content %}
+<div>
+  <h1>Welcome to Cesar's Blog!</h1>
+  <br/>
+  <p>This blog is dedicated to all things Programming!</p>
+  <h2><b>Latest Posts:</b></h2>
+</div>
+
+{% for BlogPost in BlogPosts.all %}
+<a href="{% url 'posts_detail' BlogPost.id %}">
+  <div class="blog-post">
+    <h1 class="center blog-title">{{ BlogPost.title }}</h1>
+    <br/>
+    <h3 class="blog-link">{{ BlogPost.pub_date_pretty }}</h3>
+    <br/>
+    <img id="post_header" src="{{ BlogPost.image.url }}" />
+    <br/>
+    <p class="blog-description">{{ BlogPost.description }}</p>
+    <br/>
+  </div>
+</a>
+{% endfor %}
+{% endblock %}
