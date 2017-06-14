@@ -1,38 +1,49 @@
 {% extends 'beginning.html' %}
 {% block content %}
-<h1>{{ BlogPost.title }}</h1>
+
 <br/>
-<h3>{{ BlogPost.pub_date_pretty }}</h3>
+<img class="post-header img-responsive" src="{{ BlogPost.image.url }}" />
 <br/>
-<img id="post_header" src="{{ BlogPost.image.url }}" />
+<h1 class="center">{{ BlogPost.title }}</h1>
 <br/>
+<h3 class="date blog-link">{{ BlogPost.pub_date_pretty }}</h3>
+<br/>
+<div class="blog-body">
 {{ BlogPost.body | safe }}
-<br/>
-<br/>
+</div>
 
 <div class="separator-small"></div>
 
 <!-- This is where the comments will be available -->
-<div class="formfiller"></div>
-<div class="form">
+<div id="formfiller"></div>
+<div id="form">
   <form method="POST" action="{% url 'posts_detail' BlogPost.id %}">
     {% csrf_token %}
-    <input type="TextField" name="username" placeholder="Username" />
-    <br/><br/>
-    <textarea rows="5" name="comment" placeholder="Share your thoughts... There is no sign up!"></textarea>
-    <br/><br/>
+
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input name="username" type="username" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter username">
+    </div>
+
+    <div class="form-group">
+      <label for="comment">Comment</label>
+      <textarea name="comment" type="comment" class="form-control" id="comment" aria-describedby="commentHelp" placeholder="Share your thoughts... There is no sign up!"></textarea>
+    </div>
     <input type="hidden" name="post_id" value="{{ BlogPost.id }}" />
-    <button type="submit">Post Comment</button>
+
+    <button type="submit" class="btn btn-primary pull-right">Post Comment</button>
+    <br/><br/>
   </form>
 </div>
-<div class="formfiller"></div>
+<div id="formfiller"></div>
 
 <div class="separator-small"></div>
 
 <!-- This is where the comments will display -->
+<h1>Comments:</h1>
 {% for comment in Comments.all %}
   <div class="comment">
-    <h1>{{ comment.username }}</h1>
+    <h2>{{ comment.username }}</h2>
     <p>{{ comment.message }}</p>
   </div>
 {% endfor %}

@@ -14,10 +14,9 @@
     <br/>
     <h3 class="blog-link">{{ BlogPost.pub_date_pretty }}</h3>
     <br/>
-    <img id="post_header" src="{{ BlogPost.image.url }}" />
+    <img class="post-header img-responsive" src="{{ BlogPost.image.url }}" />
     <br/>
     <p class="blog-description">{{ BlogPost.description }}</p>
-    <br/>
   </div>
 </a>
 {% endfor %}
