@@ -6,7 +6,7 @@ class BlogPost(models.Model):
     title = models.CharField(max_length=250)
     description = models.CharField(max_length=300)
     pub_date = models.DateTimeField()
-    image = models.ImageField(upload_to='media/')
+    image = models.CharField(max_length=300)
     body = models.TextField()
 
     def __str__(self):
