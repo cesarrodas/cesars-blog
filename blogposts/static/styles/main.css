@@ -52,7 +52,7 @@ div {
 }
 
 .post-header {
-  height: 300px;
+  max-height: 300px;
   margin: auto;
 }
 
