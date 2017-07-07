@@ -8,7 +8,7 @@
 </div>
 
 {% for BlogPost in BlogPosts.all %}
-<a href="{% url 'posts_detail' BlogPost.id %}">
+<a class="link-wrapper" href="{% url 'posts_detail' BlogPost.id %}">
   <div class="blog-post">
     <h1 class="center blog-title">{{ BlogPost.title }}</h1>
     <br/>
